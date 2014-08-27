@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+repositories {
+    mavenCentral()
+}
+apply plugin: 'java'
+apply plugin: 'maven'
+ext.versions = [
+        junit: "4.10",
+]
+
+
+dependencies {
+    compile localGroovy()
+        compile gradleApi()
+}
+
+rootProject.dependencies {
+    runtime project(path)
+}
+
+group = 'com.johnpulford'
+version = '1.0-SNAPSHOT'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
